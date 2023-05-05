@@ -78,6 +78,4 @@ def mirror_row(row) do
   row ++ [second, first]
 end
 
-
-
 end
