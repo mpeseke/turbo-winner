@@ -5,8 +5,7 @@ defmodule Discuss.Topic do
 
   schema "topics" do
     field :title, :string
-    field :inserted_at, :utc_datetime
-    field :updated_at, :utc_datetime
+    timestamps()
   end
 
   def changeset(%Topic{} = topic, attrs \\ %{}) do
@@ -16,5 +15,6 @@ defmodule Discuss.Topic do
     |> validate_length(:title, min: 5)
     |> unique_constraint(:title)
   end
+
 
 end
