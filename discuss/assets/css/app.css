@@ -30,9 +30,12 @@
   display: none;
 }
 .invalid-feedback {
-  color: #a94442;
+  font-size: medium;
+  font-weight: 400;
+  color: red;
   display: block;
-  margin: -1rem 0 2rem;
+  text-transform: capitalize;
+  margin: -.5rem 0 0;
 }
 
 /* LiveView specific classes for your customization */
