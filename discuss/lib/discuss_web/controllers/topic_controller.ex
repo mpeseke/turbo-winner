@@ -64,16 +64,15 @@ defmodule DiscussWeb.TopicController do
 
   def show(conn, %{"id" => topic_id}) do
     topic = Repo.get!(Topic, topic_id)
-
     case topic do
       nil ->
         conn
-        |> put_status(:not_found)
-        |> IO.puts("Topic not found")
+        |> put_flash(:error, "Topic not found")
+        |> redirect(to: Routes.topic_path(conn, :index))
       _ ->
         conn
         |> put_status(:ok)
-        |> IO.puts("Topic found")
+        |> render("show.html", topic: topic)
     end
   end
 

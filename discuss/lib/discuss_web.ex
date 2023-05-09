@@ -82,6 +82,8 @@ defmodule DiscussWeb do
     quote do
       use Phoenix.Channel
       import DiscussWeb.Gettext
+
+      alias Discuss.Repo
     end
   end
 
