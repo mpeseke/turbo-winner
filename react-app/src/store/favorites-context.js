@@ -3,9 +3,12 @@ import { createContext, useState } from "react";
 const FavoritesContext = createContext({
   favorites: [],
   totalFavorites: 0,
+  addFavorite: (favoritePokemon) => {},
+  removeFavorite: (pokemonId) => {},
+  pokemonIsFavorite: (pokemonId) => {},
 });
 
-function FavoritesContextProvider(props) {
+export function FavoritesContextProvider(props) {
   const [userFavorites, setUserFavorites] = useState([]);
 
   function addFavoriteHandler(favoritePokemon) {
@@ -14,7 +17,7 @@ function FavoritesContextProvider(props) {
     });
   }
 
-  function removeFunctionHandler(pokemonId) {
+  function removeFavoriteHandler(pokemonId) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.filter((pokemon) => pokemon.id !== pokemonId);
     });
@@ -27,6 +30,9 @@ function FavoritesContextProvider(props) {
   const context = {
     favorites: userFavorites,
     totalFavorites: userFavorites.length,
+    addFavorite: addFavoriteHandler,
+    removeFavorite: removeFavoriteHandler,
+    pokemonIsFavorite: pokemonIsFavoriteHandler,
   };
 
   return (
@@ -35,3 +41,5 @@ function FavoritesContextProvider(props) {
     </FavoritesContext.Provider>
   );
 }
+
+export default FavoritesContext;

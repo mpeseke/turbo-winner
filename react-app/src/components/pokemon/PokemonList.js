@@ -9,7 +9,7 @@ function PokemonList(props) {
           key={pokemon.id}
           id={pokemon.id}
           image={pokemon.image}
-          title={pokemon.title}
+          name={pokemon.name}
           type={pokemon.type}
           description={pokemon.description}
         />
