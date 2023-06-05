@@ -3,6 +3,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider, createTheme } from "@mui/material";
+import NavBar from "@/components/ui/Navbar";
 
 const theme = createTheme({
   palette: {
@@ -26,7 +27,10 @@ export default function RootLayout({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <NavBar />
+          {children}
+        </body>
       </html>
     </ThemeProvider>
   );
