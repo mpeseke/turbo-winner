@@ -1,8 +1,16 @@
-import { getEventById } from "@/app/dummy-data";
+import { getAllEvents, getEventById } from "@/helpers/api-util";
 import Image from "next/image";
 
-export default function EventDetailPage({ params }) {
-  const event = getEventById(params.eventId);
+export async function generateStaticParams() {
+  const events = await getAllEvents();
+
+  const paths = events.map((event) => ({ params: { eventId: event.id } }));
+
+  return paths;
+}
+
+export default async function EventDetailPage({ params }) {
+  const event = await getEventById(params.eventId);
   if (!event) {
     return <p>No event Found </p>;
   }
@@ -12,7 +20,7 @@ export default function EventDetailPage({ params }) {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>{title}</h1>
       <div>
-        <Image src={imagePath} alt={event.title} height={250} width={150} />
+        <Image src={imagePath} alt={title} height={250} width={150} />
       </div>
       <div>
         <address>{location}</address>
